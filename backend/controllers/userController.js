@@ -50,12 +50,20 @@ const logoutUser = async(req, res) => {
         const accessToken = cookies.accessToken;
         const user = await User.findOne({accessToken})
         if(!user){
-            res.clearCookie("accessToken", {httpOnly: true, secure : true})
+            res.clearCookie("accessToken", {
+                httpOnly: true,
+                sameSite: "None",
+                secure: true,
+            });
             return res.sendStatus(204)
         }
         user.accessToken = ""
         await user.save();  
-        res.clearCookie("accessToken", {httpOnly: true, secure : true})
+        res.clearCookie("accessToken", {
+            httpOnly: true,
+            sameSite: "None",
+            secure: true,
+        });
         return res.sendStatus(204)
     }catch(err){
         res.status(400).json({error : err.message})
