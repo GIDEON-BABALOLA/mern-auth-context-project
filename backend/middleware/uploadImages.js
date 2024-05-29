@@ -1,6 +1,5 @@
 const path = require("path")
 const multer = require("multer")
-const sharp = require("sharp")
 const fs = require("fs")
 const fsPromises = require("fs").promises
 const multerStorage = multer.diskStorage({
@@ -27,32 +26,6 @@ const multerFilter = (req, file, cb) => {
         false)
     }
 }
-const productImgResize = async(req, res, next) => {
-    if(!req.files) return next();
-    await Promise.all(
-req.files.map( async (file) => {
-    if(!fs.existsSync(path.join(__dirname, "..", 'public', "images", "products"))){
-        await fsPromises.mkdir(path.join(__dirname, "..",'public', "images", "products"));
-    }
-    await sharp(file.path).resize(300, 300).toFormat("jpeg").jpeg({quality : 90}).toFile(path.join(__dirname, "..", "public", "images", "products", `${file.filename}`))
-    fs.unlinkSync(path.join(__dirname, "..", "public", "images", "products", `${file.filename}`))
-}) 
-)
-next()
-}
-const blogImgResize = async(req, res, next) => {
-    if(!req.files) return next()
-    await Promise.all(
-req.files.map( async(file) => {
-    if(!fs.existsSync(path.join(__dirname, "..", 'public', "images", "blogs"))){
-        await fsPromises.mkdir(path.join(__dirname, "..",'public', "images", "blogs"));
-    }
-    await sharp(file.path).resize(300, 300).toFormat("jpeg").jpeg({quality : 90}).toFile(path.join(__dirname, "..", "public", "images", "blogs", `${file.filename}`))
-    fs.unlinkSync(path.join(__dirname, "..", "public", "images", "blogs", `${file.filename}`))
-}) 
-)
-next()
-}
 const uploadPhoto = multer({
     storage : multerStorage,
     fileFilter : multerFilter,
@@ -73,4 +46,4 @@ const uploadMiddleware = (req, res, next) => {
  });
 };
 
-module.exports = {uploadMiddleware, productImgResize, blogImgResize }
+module.exports = {uploadMiddleware }
