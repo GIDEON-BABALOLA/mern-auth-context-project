@@ -1,6 +1,5 @@
 import { createContext, useReducer, useEffect} from "react"
 import { workout } from "../api/workouts"
-import { GetUser } from "../hooks/useGetUser"
 export const AuthContext = createContext()
 export const authReducer = (state, action) => {
     switch(action.type){

@@ -21,29 +21,7 @@ export const useLogout = () => {
             setIsLoading(false)
             setError(err.response.data.error)
          }
-        //remove user from storage
-        // localStorage.removeItem("user")
-        //dispatch takes in the action object
-        // dispatch({type : "LOGOUT"}) //only the type is needed here, the payload is not needed
-        // workoutDispatch({type : "SET_WORKOUTS", payload : null})
     }
     return { logout, error, isLoading }
 }
 
-
-// try{
-//     setIsLoading(true) //starting the request
-//     setError(null)
-// const response = await workout.post("/user/login", {
-// email : email,
-// password : password
-// })
-// if(response && response.data){
-// dispatch({type : "LOGIN", payload : response.data})
-// setIsLoading(false)
-// }
-// }
-// catch(err){
-//     setIsLoading(false)
-//     setError(err.response.data.error)
-// }

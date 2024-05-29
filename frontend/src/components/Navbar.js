@@ -4,8 +4,8 @@ import { useAuthContext } from '../hooks/useAuthContext'
 const Navbar = () => {
   const { logout, error, isLoading} = useLogout()
   const { user } = useAuthContext()
-const handleClick = () => {
-logout()
+const handleClick = async () => {
+await logout()
 }
   return (
     <header>
