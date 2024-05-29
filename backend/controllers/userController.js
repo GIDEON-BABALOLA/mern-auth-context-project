@@ -34,7 +34,7 @@ const user = await User.signup(email, password, picture.url)
 const token = createToken(user._id)
 user.accessToken = token
 await user.save()
-res.cookie("accessToken", token, {httpOnly : true, maxAge :   60 * 60 * 1000 * 24 * 3,   sameSite: "None",  secure : "true"  })
+res.cookie("accessToken", token, {httpOnly : true, maxAge :   60 * 60 * 1000 * 24 * 3,   sameSite: "None",  secure : true  })
 res.status(200).json({email, token, picture: user.picture})
     }catch(err){
 console.log(err.message)
