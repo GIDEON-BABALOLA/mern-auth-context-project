@@ -1,5 +1,5 @@
 import axios from "axios"
 export const workout = axios.create({
-    baseURL : "http://localhost:5000/api",
+    baseURL : "https://mern-auth-context-api.onrender.com",
     withCredentials : true
 })

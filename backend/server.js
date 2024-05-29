@@ -15,7 +15,7 @@ const app = express()
 app.use(express.json())
 // Allow requests from localhost:3000
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: 'https://work-outs.vercel.app',
   credentials: true // Allow cookies to be sent
 }));
 app.use(cookieParser())
